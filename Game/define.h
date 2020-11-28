@@ -113,20 +113,22 @@ enum EntityType
 	UIEXTRASHOT = 13,
 
 	//Static Obj Zone 20-40
-	COIN = 28,
 	BRICK = 20,
-	MUSH = 29,
-	LEAF = 22,
-	VENUS = 30,
-	GOOMBA = 31,
-	KOOPA = 32,
-	CBRICK = 30,
 	BREAKABLEBRICK = 21,
+	LEAF = 22,
 	CANDLE = 23,
 	MOVINGPLATFORM = 24,
 	STAIRS = 25,
 	GATE = 26,
 	BUSH = 27,
+	COIN = 28,
+	MUSH = 29,
+	VENUS = 30,
+	GOOMBA = 31,
+	KOOPA = 32,
+	MONEY = 33,
+	CBRICK = 34,
+
 
 	//Item Zone 40-70
 	POWERUP = 40,

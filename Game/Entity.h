@@ -58,7 +58,7 @@ public:
 	int health;
 
 	bool isdone;
-
+	int id_goomba;
 	int nx;
 	int gunDam; // gun damage
 

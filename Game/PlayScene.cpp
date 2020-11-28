@@ -13,6 +13,7 @@
 #define OBJECT_TYPE_VENUS_GREEN	9
 #define OBJECT_TYPE_COIN		10
 #define OBJECT_TYPE_GOOMBA		11
+#define OBJECT_TYPE_MONEY		12
 //#define OBJECT_TYPE_CENTIPEDE	10
 //#define OBJECT_TYPE_GOLEM		11
 //#define OBJECT_TYPE_GUNNER	12
@@ -251,6 +252,18 @@ void PlayScene::PlayerTouchItem()
 					player->SetLevel(MARIO_LEVEL_RACCOON);
 					leaf->isDeath = true;
 				}
+			}
+		}
+	}
+	for (UINT i = 0; i < listitems.size(); i++)
+	{
+		if (listitems[i]->GetType() == EntityType::MONEY)
+		{
+			if (player->IsCollidingObject(listitems[i]))
+			{
+				Money* money = dynamic_cast<Money*>(listitems[i]);
+				if (money->isOnTop == false)
+					listitems[i]->SetState(MONEY_STATE_WALKING);
 			}
 		}
 	}
@@ -770,7 +783,8 @@ void PlayScene::_ParseSection_OBJECTS(string line)
 	}
 	case OBJECT_TYPE_GOOMBA:
 	{
-		obj = new Goomba();
+		obj = new Goomba(player);
+		obj->id_goomba = atoi(tokens[6].c_str());
 		obj->SetPosition(x, y);
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 
@@ -798,6 +812,16 @@ void PlayScene::_ParseSection_OBJECTS(string line)
 		listLeaf.push_back(obj);
 		//listObjects.push_back(obj);
 		DebugOut(L"[test] add leaf !\n");
+		break;
+	}
+	case OBJECT_TYPE_MONEY:
+	{
+		obj = new Money(x, y);
+		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
+
+		obj->SetAnimationSet(ani_set);
+		listitems.push_back(obj);
+		DebugOut(L"[test] add money !\n");
 		break;
 	}
 	case OBJECT_TYPE_COIN:

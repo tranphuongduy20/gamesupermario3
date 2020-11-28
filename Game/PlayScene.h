@@ -20,6 +20,7 @@
 #include "VenusNoFire.h"
 #include "Leaf.h"
 #include "Coin.h"
+#include "Money.h"
 #include "Gate.h"
 #include "RaccoonTail.h"
 //#include "PowerUp.h"

@@ -121,6 +121,9 @@
     <ClCompile Include="VenusBullet.cpp">
       <Filter>Header Files\Object\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Money.cpp">
+      <Filter>Header Files\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h">
@@ -242,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="VenusBullet.h">
       <Filter>Header Files\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Money.h">
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

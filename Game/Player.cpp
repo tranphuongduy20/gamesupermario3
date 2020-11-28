@@ -175,7 +175,90 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 			else if (e->obj->GetType() == EntityType::GOOMBA)
 			{
 				Goomba* goomba = dynamic_cast<Goomba*>(e->obj);
+
 				if (e->ny < 0)
+				{
+					if (goomba->id_goomba == GOOMBA_NORMAL)     //kill goomba normal
+					{
+						if (goomba->GetState() != GOOMBA_STATE_DIE)
+						{
+							goomba->SetState(GOOMBA_STATE_DIE);
+							//goomba->makeEffect = true;
+							vy = -MARIO_JUMP_DEFLECT_SPEED;
+							isJumping = true;
+						}
+					}
+					else if (goomba->id_goomba == GOOMBA_RED)				//kill goomba red
+					{
+						if (goomba->hasWing)
+						{
+							goomba->SetState(GOOMBA_RED_STATE_NO_WING_WALK);	//khi co canh thi ve trang thai di bo							
+							vy = -MARIO_JUMP_DEFLECT_SPEED;
+							goomba->hasWing = false;
+							isJumping = true;
+						}
+						else
+						{
+							if (goomba->GetState() != GOOMBA_RED_STATE_NO_WING_DIE)
+							{
+								goomba->SetState(GOOMBA_RED_STATE_NO_WING_DIE);
+								vy = -MARIO_JUMP_DEFLECT_SPEED;
+								isJumping = true;
+							}
+						}
+					}
+				}
+				else if (e->nx != 0)
+				{
+					if (untouchable == 0)
+					{
+						if (goomba->id_goomba == GOOMBA_NORMAL)
+						{
+							if (goomba->GetState() != GOOMBA_STATE_DIE || goomba->GetState() != GOOMBA_STATE_DIE_FLY)
+							{
+								if (level > MARIO_LEVEL_BIG)
+								{
+									level = MARIO_LEVEL_BIG;
+									StartUntouchable();
+								}
+								else if (level == MARIO_LEVEL_BIG)
+								{
+									level = MARIO_LEVEL_SMALL;
+									StartUntouchable();
+								}
+								else
+								{
+									SetState(MARIO_STATE_DIE);
+									return;
+								}
+							}
+						}
+						else if (goomba->id_goomba == GOOMBA_RED)
+						{
+							if (goomba->GetState() != GOOMBA_RED_STATE_NO_WING_DIE || goomba->GetState() != GOOMBA_RED_STATE_NO_WING_DIE_FLY)
+							{
+								if (level > MARIO_LEVEL_BIG)
+								{
+									level = MARIO_LEVEL_BIG;
+									StartUntouchable();
+								}
+								else if (level == MARIO_LEVEL_BIG)
+								{
+									level = MARIO_LEVEL_SMALL;
+									StartUntouchable();
+								}
+								else
+								{
+									SetState(MARIO_STATE_DIE);
+									return;
+								}
+							}
+						}
+
+					}
+				}
+
+				/*if (e->ny < 0)
 				{
 					if (goomba->GetState() != GOOMBA_STATE_DIE)
 					{
@@ -186,14 +269,6 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 				}
 				else if (e->nx != 0)
 				{
-					/*if (GetState() == MARIO_ANI_RACCOON_SPIN)
-					{
-						if (goomba->GetState() != GOOMBA_STATE_DIE)
-						{
-							goomba->SetState(GOOMBA_STATE_DIE_FLY);
-							goomba->vx = -goomba->vx;
-						}
-					}*/
 					if (untouchable == 0)
 					{
 						if (goomba->GetState() != GOOMBA_STATE_DIE || goomba->GetState() != GOOMBA_STATE_DIE_FLY)
@@ -215,7 +290,7 @@ void Player::Update(DWORD dt, vector<LPGAMEENTITY>* coObjects)
 							}
 						}
 					}
-				}
+				}*/
 			}
 			else if (e->obj->GetType() == EntityType::KOOPA)
 			{

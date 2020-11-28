@@ -332,7 +332,7 @@
 # type	x	y	ani_set_id	extra_settings per object type
 # type: 0 = Mario , 1 = Brick, 2 = Goomba, 3 = Koopas
 # MARIO
-0	1816	350	1
+0	20	350	1
 
 [SCENE]
 #Stage1

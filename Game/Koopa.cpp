@@ -28,10 +28,11 @@ void Koopa::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	}
 	else
 	{
-		left = x;
+		/*left = x;
 		top = y;
 		right = left;
-		bottom = top;
+		bottom = top;*/
+		left = top = right = bottom = 0;
 	}
 }
 
